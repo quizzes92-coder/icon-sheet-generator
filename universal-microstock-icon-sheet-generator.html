@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microstock Vector Icon Sheet Studio (7000x5000)</title>
+  <style>
+    /* ==========================================================================
+       RESET & THEME VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-dark: #0F0F11;
+      --bg-panel: #161619;
+      --bg-card: #1D1D22;
+      --bg-input: #26262D;
+      --accent: #CCFF00;
+      --accent-hover: #b8e600;
+      --text-main: #F0F0F3;
+      --text-muted: #8E8E9B;
+      --border: #2F2F38;
+      --border-focus: #CCFF00;
+      --danger: #FF4D4D;
+      --success: #00E676;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ==========================================================================
+       TOP APP HEADER
+       ========================================================================== */
+    header.app-header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 20;
+      flex-shrink: 0;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-dark);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      background: rgba(204, 255, 0, 0.12);
+      color: var(--accent);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .category-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    .input-wrapper label {
+      position: absolute;
+      top: -6px;
+      left: 10px;
+      background: var(--bg-panel);
+      padding: 0 4px;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .app-input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .app-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0F0F11;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #27272F;
+      border-color: #3F3F4C;
+    }
+
+    .btn-icon {
+      padding: 8px;
+      width: 34px;
+      height: 34px;
+    }
+
+    .api-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .status-dot.active {
+      background: var(--success);
+      box-shadow: 0 0 6px var(--success);
+    }
+    .status-dot.demo {
+      background: #EAB308;
+    }
+
+    /* ==========================================================================
+       MAIN WORKSPACE LAYOUT
+       ========================================================================== */
+    .workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sidebar controls */
+    aside.control-sidebar {
+      width: 320px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .sidebar-section {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Style Switcher Grid */
+    .style-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .style-btn {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 8px;
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .style-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .style-btn:hover {
+      border-color: #4A4A58;
+      background: #25252D;
+    }
+
+    .style-btn.active {
+      border-color: var(--accent);
+      background: rgba(204, 255, 0, 0.08);
+      color: var(--accent);
+    }
+
+    /* Sliders and Range Controls */
+    .control-group {
+      margin-bottom: 14px;
+    }
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #DDD;
+    }
+
+    .slider-val {
+      font-weight: 700;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-input);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Color Swatches */
+    .palette-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .palette-modes {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mode-pill {
+      flex: 1;
+      padding: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .mode-pill.active {
+      background: rgba(204, 255, 0, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .swatches-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .swatch-item {
+      flex: 1;
+      height: 32px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swatch-item input[type="color"] {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .swatch-preset-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-bar {
+      display: flex;
+      height: 22px;
+      width: 68px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .preset-bar:hover {
+      transform: scale(1.05);
+      border-color: #666;
+    }
+    .preset-bar.active {
+      border: 2px solid var(--accent);
+    }
+    .preset-color-slice {
+      flex: 1;
+      height: 100%;
+    }
+
+    /* Toggle switches */
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+    .toggle-label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border);
+      transition: .2s;
+      border-radius: 22px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(18px);
+      background-color: #0F0F11;
+    }
+
+    /* Sidebar Footer Action Buttons */
+    .sidebar-actions {
+      margin-top: auto;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ==========================================================================
+       CENTER PREVIEW VIEWPORT
+       ========================================================================== */
+    main.viewport-area {
+      flex: 1;
+      background: #09090B;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .viewport-canvas-wrapper {
+      position: absolute;
+      transform-origin: 0 0;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+      transition: box-shadow 0.2s;
+    }
+    .viewport-canvas-wrapper:active {
+      cursor: grabbing;
+    }
+
+    #artboardSvg {
+      display: block;
+      width: 7000px;
+      height: 5000px;
+      background: #FFFFFF;
+    }
+
+    /* Floating Viewport Controls */
+    .viewport-floating-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22, 22, 25, 0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 4px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 15;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .zoom-text {
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 48px;
+      text-align: center;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    /* ==========================================================================
+       MODALS & PANELS (SEO & API KEY)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 580px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--bg-card);
+    }
+
+    .keyword-counter-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .keyword-counter-badge.exact {
+      color: #0F0F11;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .keyword-chip-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 180px;
+      overflow-y: auto;
+      padding: 8px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .keyword-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: #DDD;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #FFF;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: slideIn 0.25s ease-out forwards;
+      pointer-events: auto;
+      max-width: 360px;
+    }
+    .toast.error {
+      border-left-color: var(--danger);
+    }
+    .toast.info {
+      border-left-color: #38BDF8;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Loading Overlay */
+    .loading-banner {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 15, 17, 0.95);
+      border: 1px solid var(--accent);
+      border-radius: 30px;
+      padding: 8px 20px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(204, 255, 0, 0.3);
+      align-items: center;
+      gap: 10px;
+    }
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(204, 255, 0, 0.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP HEADER
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="brand-group">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+      </div>
+      <div class="brand-title">
+        STOCK VECTOR STUDIO
+        <span class="brand-badge">7000×5000</span>
+      </div>
+    </div>
+
+    <!-- Category Input & Primary Generation Action -->
+    <div class="category-bar">
+      <div class="input-wrapper">
+        <label for="categoryInput">Category</label>
+        <input type="text" id="categoryInput" class="app-input" value="ARROW" placeholder="e.g. ARROW, HOME, CAR, FOOD..." autocomplete="off" />
+      </div>
+      <button id="btnGenerate" class="btn btn-primary" title="Generate or load complete 30-icon sheet for this category">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        GENERATE
+      </button>
+    </div>
+
+    <!-- API & SEO Control Buttons -->
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button id="btnOpenSeo" class="btn btn-secondary" title="View Commercial Title and 47 Microstock Keywords">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        SEO Metadata (47)
+      </button>
+      <div id="btnApiKeyModal" class="api-status-badge" title="Configure Google Gemini BYOK API Key">
+        <span id="apiStatusDot" class="status-dot demo"></span>
+        <span id="apiStatusText">Demo Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN WORKSPACE
+       ======================================================================== -->
+  <div class="workspace">
+
+    <!-- LEFT CONTROLS SIDEBAR -->
+    <aside class="control-sidebar">
+      
+      <!-- Style Switcher Section -->
+      <div class="sidebar-section">
+        <div class="section-title">Visual Render Style</div>
+        <div class="style-grid">
+          <button class="style-btn active" data-style="outline" id="styleOutline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="12" x2="15" y2="15"></line>
+            </svg>
+            Outline
+          </button>
+          <button class="style-btn" data-style="invert" id="styleInvert">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <path d="M12 7v10M7 12h10" stroke="#0F0F11" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Invert Badge
+          </button>
+          <button class="style-btn" data-style="color" id="styleColor">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="2" fill="#155DFB"></rect>
+              <rect x="13" y="3" width="8" height="8" rx="2" fill="#00B8D9"></rect>
+              <rect x="3" y="13" width="8" height="8" rx="2" fill="#00B8D9"></rect>
+              <rect x="13" y="13" width="8" height="8" rx="2" fill="#155DFB"></rect>
+            </svg>
+            Color
+          </button>
+          <button class="style-btn" data-style="frame" id="styleFrame">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Frame
+          </button>
+        </div>
+      </div>
+
+      <!-- Icon Geometry & Layout Sliders -->
+      <div class="sidebar-section">
+        <div class="section-title">Artboard Geometry</div>
+
+        <!-- Icon Count -->
+        <div class="control-group">
+          <div class="slider-header">
+            <span>Icon Quantity</span>
+            <span class="slider-val" id="valCount">30</span>
+          </div>
+          <input type="range" id="sliderCount" min="1" max="30" step="1" value="30" />
+        </div>
+
+        <!-- Stroke Weight -->
+        <div class="control-group">
+          <div class="slider-header">
+            <span>Stroke Weight</span>
+            <span class="slider-val" id="valStroke">1.2</span>
+          </div>
+          <input type="range" id="sliderStroke" min="0.1" max="3.0" step="0.1" value="1.2" />
+        </div>
+
+        <!-- Frame Roundness (for Frame and Badges) -->
+        <div class="control-group" id="groupFrameRoundness">
+          <div class="slider-header">
+            <span>Frame Roundness</span>
+            <span class="slider-val" id="valRoundness">18%</span>
+          </div>
+          <input type="range" id="sliderRoundness" min="0" max="50" step="1" value="18" />
+        </div>
+      </div>
+
+      <!-- Color Palette System (For Color Style) -->
+      <div class="sidebar-section" id="sectionColorPalette">
+        <div class="section-title">Color Palette</div>
+        <div class="palette-container">
+          <div class="palette-modes">
+            <div class="mode-pill active" data-colors="2">2-Color</div>
+            <div class="mode-pill" data-colors="3">3-Color</div>
+            <div class="mode-pill" data-colors="4">4-Color</div>
+          </div>
+
+          <div class="swatches-row" id="activeSwatchesRow">
+            <!-- Dynamic Color Swatches rendered via JS -->
+          </div>
+
+          <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-top: 4px;">Curated Microstock Palettes</div>
+          <div class="swatch-preset-group" id="presetPalettesGroup">
+            <!-- Preset Clickable Bars -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Microstock Export Preferences -->
+      <div class="sidebar-section">
+        <div class="section-title">Stock Export Settings</div>
+        <div class="toggle-row">
+          <span class="toggle-label">Include Left Brand Panel</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleBranding" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Export Action Buttons -->
+      <div class="sidebar-actions">
+        <button id="btnExportSvg" class="btn btn-primary" style="width: 100%; padding: 12px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          EXPORT PURE SVG (7000×5000)
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button id="btnExportPng" class="btn btn-secondary" style="flex: 1;">
+            Export PNG
+          </button>
+          <button id="btnDownloadCsv" class="btn btn-secondary" style="flex: 1;">
+            CSV Meta
+          </button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- CENTER PREVIEW VIEWPORT -->
+    <main class="viewport-area" id="viewportContainer">
+      <div class="loading-banner" id="loadingBanner">
+        <div class="spinner"></div>
+        <span id="loadingBannerText">Synthesizing Icons with Gemini AI...</span>
+      </div>
+
+      <div class="viewport-canvas-wrapper" id="canvasWrapper">
+        <svg id="artboardSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7000 5000" width="7000" height="5000">
+          <!-- Dynamically generated pure vector artwork -->
+        </svg>
+      </div>
+
+      <!-- Floating Viewport Navigation Toolbar -->
+      <div class="viewport-floating-bar">
+        <button class="btn btn-secondary btn-icon" id="btnZoomOut" title="Zoom Out (-)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+        </button>
+        <span class="zoom-text" id="zoomDisplay">15%</span>
+        <button class="btn btn-secondary btn-icon" id="btnZoomIn" title="Zoom In (+)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+        </button>
+        <button class="btn btn-secondary" id="btnZoomFit" style="padding: 4px 10px; font-size: 11px;">
+          Fit
+        </button>
+        <button class="btn btn-secondary" id="btnZoomReset" style="padding: 4px 10px; font-size: 11px;">
+          100%
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       SEO METADATA MODAL (47 KEYWORDS & COMMERCIAL TITLE)
+       ======================================================================== -->
+  <div class="modal-overlay" id="seoModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Microstock SEO & Metadata
+        </div>
+        <button class="btn btn-secondary btn-icon" id="btnCloseSeoModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="slider-header" style="margin-bottom: 6px;">
+            <span>Commercial Asset Title</span>
+            <button class="btn btn-secondary" id="btnCopyTitle" style="padding: 2px 8px; font-size: 11px;">Copy Title</button>
+          </div>
+          <input type="text" id="inputSeoTitle" class="app-input" style="font-size: 13px;" />
+        </div>
+
+        <div>
+          <div class="slider-header" style="margin-bottom: 6px;">
+            <span>Stock Keywords List</span>
+            <span class="keyword-counter-badge exact" id="keywordBadge">47 / 47 Keywords</span>
+          </div>
+          <div class="keyword-chip-container" id="keywordChipsContainer">
+            <!-- Keyword chips rendered here -->
+          </div>
+        </div>
+
+        <div>
+          <div class="slider-header" style="margin-bottom: 6px;">
+            <span>Comma-Separated Keywords (Editable)</span>
+            <button class="btn btn-secondary" id="btnCopyKeywords" style="padding: 2px 8px; font-size: 11px;">Copy Comma-Separated</button>
+          </div>
+          <textarea id="textareaKeywords" class="app-input" rows="4" style="font-size: 12px; resize: vertical; line-height: 1.4;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnDownloadCsvModal" class="btn btn-secondary">Download CSV</button>
+        <button id="btnApplySeoChanges" class="btn btn-primary">Apply Metadata</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GEMINI API KEY (BYOK) MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="apiKeyModal">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Gemini BYOK API Configuration
+        </div>
+        <button class="btn btn-secondary btn-icon" id="btnCloseApiKeyModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 12px; color: #BBB; line-height: 1.5;">
+          To generate arbitrary semantic icon categories beyond the built-in offline sets (<strong>ARROW</strong>, <strong>HOME</strong>), enter your private Google Gemini API key below.
+        </p>
+        
+        <div class="control-group">
+          <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">GOOGLE GEMINI API KEY</label>
+          <input type="password" id="inputApiKey" class="app-input" placeholder="AIzaSy..." />
+        </div>
+
+        <div class="toggle-row">
+          <span class="toggle-label" style="color: #BBB;">Remember API Key in this browser</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="checkRememberKey">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <!-- Developer / Debug Diagnostics Section -->
+        <div id="apiDebugContainer" style="background: var(--bg-input); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.6px; display: flex; justify-content: space-between; align-items: center;">
+            <span>API Diagnostics</span>
+            <span id="debugApiStatus" style="color: #EAB308; font-weight: 700;">Not Connected</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center;">
+              <span style="color: #8E8E9B;">Active Model:</span>
+              <span id="debugSelectedModel" style="color: var(--accent); font-family: monospace; font-weight: 600;">models/gemini-3.6-flash</span>
+            </div>
+            <select id="selectModelDropdown" class="app-input" style="padding: 4px 8px; font-size: 11px; font-family: monospace; display: none; margin-top: 4px; background: #121215; border-color: #3A3A48; color: #FFF;">
+            </select>
+          </div>
+          <div id="debugModelsListRow" style="display: none; flex-direction: column; gap: 4px; border-top: 1px solid var(--border); padding-top: 6px;">
+            <span style="color: #8E8E9B;">Available generateContent Models (<span id="debugModelsCount">0</span>):</span>
+            <div id="debugModelsList" style="max-height: 90px; overflow-y: auto; color: #AAA; font-family: monospace; font-size: 10px; line-height: 1.4; background: rgba(0,0,0,0.25); padding: 6px 8px; border-radius: 4px; border: 1px solid var(--border);"></div>
+          </div>
+          <button type="button" id="btnTestModels" class="btn btn-secondary" style="padding: 5px 12px; font-size: 11px; align-self: flex-start;">
+            Discover & Test Available Models
+          </button>
+        </div>
+
+        <div style="background: rgba(204, 255, 0, 0.05); border: 1px solid rgba(204, 255, 0, 0.2); border-radius: 6px; padding: 10px; font-size: 11px; color: #CCC; line-height: 1.4;">
+          <strong style="color: var(--accent);">Zero Server Leaks:</strong> Your API key is kept strictly client-side and only sent directly to Google's official Gemini endpoint. No telemetry, no external server.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnSaveApiKey" class="btn btn-primary" style="width: 100%;">Save & Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ========================================================================
+       VANILLA JAVASCRIPT APPLICATION CORE
+       ======================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ======================================================================
+         1. EMBEDDED VECTOR GLYPH GENERATOR (100% TEXT-FREE SVG FOR STOCK)
+         Microstock agencies strictly reject live <text>. This vector engine converts
+         letters and numbers directly into pure vector <path> curves!
+         ====================================================================== */
+      const GLYPH_PATHS = {
+        'A': 'M0,24 L6.2,0 L9.8,0 L16,24 L11.4,24 L9.8,17.2 L6.2,17.2 L4.6,24 Z M7.1,13.2 L8.9,13.2 L8,8.2 Z',
+        'B': 'M0,0 L10.8,0 C13.8,0 15.6,1.8 15.6,4.8 C15.6,6.8 14.4,8.2 12.4,8.8 C14.8,9.4 16,11 16,14.2 C16,18.4 13.6,24 9.8,24 L0,24 Z M4.6,4.2 L4.6,9.4 L9.6,9.4 C10.8,9.4 11.4,8.4 11.4,6.8 C11.4,5.2 10.8,4.2 9.6,4.2 Z M4.6,13.8 L4.6,19.8 L10.2,19.8 C11.5,19.8 12.2,18.4 12.2,16.8 C12.2,15.2 11.5,13.8 10.2,13.8 Z',
+        'C': 'M15.5,4.6 L11.8,7.8 C10.8,5.8 9.5,4.4 7.6,4.4 C4.4,4.4 3.6,8 3.6,12 C3.6,16 4.4,19.6 7.6,19.6 C9.5,19.6 10.8,18.2 11.8,16.2 L15.5,19.4 C13.8,22.2 11.2,24 7.6,24 C2.4,24 0,18.8 0,12 C0,5.2 2.4,0 7.6,0 C11.2,0 13.8,1.8 15.5,4.6 Z',
+        'D': 'M0,0 L9.2,0 C13.6,0 16,4.2 16,12 C16,19.8 13.6,24 9.2,24 L0,24 Z M4.6,4.4 L4.6,19.6 L8.6,19.6 C10.8,19.6 11.8,17 11.8,12 C11.8,7 10.8,4.4 8.6,4.4 Z',
+        'E': 'M0,0 L15.2,0 L15.2,4.4 L4.6,4.4 L4.6,9.8 L13.8,9.8 L13.8,14.2 L4.6,14.2 L4.6,19.6 L15.2,19.6 L15.2,24 L0,24 Z',
+        'F': 'M0,0 L15.2,0 L15.2,4.4 L4.6,4.4 L4.6,10 L13.8,10 L13.8,14.4 L4.6,14.4 L4.6,24 L0,24 Z',
+        'G': 'M15.5,4.6 L11.8,7.8 C10.8,5.8 9.5,4.4 7.6,4.4 C4.4,4.4 3.6,8 3.6,12 C3.6,16 4.4,19.6 7.6,19.6 C9.5,19.6 11,18.2 11.6,16.5 L8,16.5 L8,12.5 L15.8,12.5 L15.8,21 C13.8,23 11,24 7.6,24 C2.4,24 0,18.8 0,12 C0,5.2 2.4,0 7.6,0 C11.2,0 13.8,1.8 15.5,4.6 Z',
+        'H': 'M0,0 L4.6,0 L4.6,9.8 L11.4,9.8 L11.4,0 L16,0 L16,24 L11.4,24 L11.4,14.2 L4.6,14.2 L4.6,24 L0,24 Z',
+        'I': 'M0,0 L4.6,0 L4.6,24 L0,24 Z',
+        'J': 'M11.4,0 L16,0 L16,17.8 C16,22 12.8,24 8.4,24 C4,24 1,21.8 0.5,17.8 L4.8,16.8 C5.2,18.4 6.5,19.6 8.4,19.6 C10.4,19.6 11.4,18.6 11.4,16.5 Z',
+        'K': 'M0,0 L4.6,0 L4.6,9.8 L10.6,0 L16,0 L8.8,11.8 L16.4,24 L10.8,24 L4.6,13.8 L4.6,24 L0,24 Z',
+        'L': 'M0,0 L4.6,0 L4.6,19.6 L15.2,19.6 L15.2,24 L0,24 Z',
+        'M': 'M0,0 L5.2,0 L8,11.5 L10.8,0 L16,0 L16,24 L12,24 L12,7.5 L9.2,18 L6.8,18 L4,7.5 L4,24 L0,24 Z',
+        'N': 'M0,0 L4.6,0 L11.4,15.2 L11.4,0 L16,0 L16,24 L11.4,24 L4.6,8.8 L4.6,24 L0,24 Z',
+        'O': 'M8,0 C13.2,0 16,5 16,12 C16,19 13.2,24 8,24 C2.8,24 0,19 0,12 C0,5 2.8,0 8,0 Z M8,4.4 C5.4,4.4 4.4,8 4.4,12 C4.4,16 5.4,19.6 8,19.6 C10.6,19.6 11.6,16 11.6,12 C11.6,8 10.6,4.4 8,4.4 Z',
+        'P': 'M0,0 L10.6,0 C14,0 16,2.4 16,6.8 C16,11.2 14,13.8 10.6,13.8 L4.6,13.8 L4.6,24 L0,24 Z M4.6,4.4 L4.6,9.4 L10,9.4 C11.2,9.4 11.8,8.4 11.8,6.8 C11.8,5.4 11.2,4.4 10,4.4 Z',
+        'Q': 'M8,0 C13.2,0 16,5 16,12 C16,14.6 15.2,17 14,19 L17,22.5 L13.4,24.5 L11,21 C10,22 8.4,24 7.6,24 C2.4,24 0,19 0,12 C0,5 2.8,0 8,0 Z M8,4.4 C5.4,4.4 4.4,8 4.4,12 C4.4,16 5.4,19.6 8,19.6 C10.6,19.6 11.6,16 11.6,12 C11.6,8 10.6,4.4 8,4.4 Z',
+        'R': 'M0,0 L10.6,0 C14,0 16,2.4 16,6.6 C16,10 14,12.2 10.6,12.8 L16.4,24 L10.8,24 L5.8,13.4 L4.6,13.4 L4.6,24 L0,24 Z M4.6,4.4 L4.6,9.2 L10,9.2 C11.2,9.2 11.8,8.2 11.8,6.8 C11.8,5.4 11.2,4.4 10,4.4 Z',
+        'S': 'M15,5 L11.4,7.2 C10.8,5.6 9.5,4.4 7.6,4.4 C5.4,4.4 4.4,5.6 4.4,7.2 C4.4,9 6,9.8 9.4,11 C13.6,12.2 16,14 16,17.6 C16,21.6 12.8,24 8,24 C3.2,24 0.8,21 0,17.6 L4.4,15.8 C4.8,17.8 6.4,19.6 8,19.6 C10.4,19.6 11.6,18.4 11.6,17 C11.6,15.2 10.2,14.2 6.8,13 C2.8,11.5 0.4,9.8 0.4,6.5 C0.4,2.5 3.8,0 8,0 C12,0 14.2,2.5 15,5 Z',
+        'T': 'M0,0 L16,0 L16,4.4 L10.4,4.4 L10.4,24 L5.6,24 L5.6,4.4 L0,4.4 Z',
+        'U': 'M0,0 L4.6,0 L4.6,15 C4.6,18 6,19.6 8,19.6 C10,19.6 11.4,18 11.4,15 L11.4,0 L16,0 L16,15 C16,20.6 12.8,24 8,24 C3.2,24 0,20.6 0,15 Z',
+        'V': 'M0,0 L4.8,0 L8,16.2 L11.2,0 L16,0 L10.6,24 L5.4,24 Z',
+        'W': 'M0,0 L4.2,0 L6.6,14.2 L9.2,0 L12.8,0 L15.4,14.2 L17.8,0 L22,0 L17.4,24 L13.4,24 L11,10.6 L8.6,24 L4.6,24 Z',
+        'X': 'M0,0 L5,0 L8,7.6 L11,0 L16,0 L10.6,12 L16,24 L11,24 L8,16.4 L5,24 L0,24 L5.4,12 Z',
+        'Y': 'M0,0 L4.8,0 L8,9.2 L11.2,0 L16,0 L10.4,13.6 L10.4,24 L5.6,24 L5.6,13.6 Z',
+        'Z': 'M0,0 L15.4,0 L15.4,4.2 L5.6,19.6 L15.4,19.6 L15.4,24 L0,24 L0,19.8 L9.8,4.4 L0,4.4 Z',
+        '0': 'M8,0 C13.2,0 16,5 16,12 C16,19 13.2,24 8,24 C2.8,24 0,19 0,12 C0,5 2.8,0 8,0 Z M8,4.4 C5.4,4.4 4.4,8 4.4,12 C4.4,16 5.4,19.6 8,19.6 C10.6,19.6 11.6,16 11.6,12 C11.6,8 10.6,4.4 8,4.4 Z',
+        '1': 'M1.8,5.2 L7.2,0 L10.8,0 L10.8,24 L6.2,24 L6.2,5.2 Z',
+        '2': 'M0,4.6 C1,1.6 4,0 8,0 C13,0 15.6,3 15.6,7 C15.6,11.6 12.4,15.2 6.8,19.6 L16,19.6 L16,24 L0,24 L0,19.6 L7,13.4 C10,10.8 11.2,9 11.2,7 C11.2,5.2 9.8,4.4 8,4.4 C5.8,4.4 4.4,5.4 4,7.6 Z',
+        '3': 'M0,3 L15.2,3 L15.2,7 L9,11 C12.6,11.6 15.6,13.6 15.6,17.6 C15.6,21.8 12.6,24 8,24 C3.2,24 0.8,21 0,17.6 L4.6,16 C4.8,18 6.2,19.6 8,19.6 C10,19.6 11.2,18.6 11.2,17 C11.2,15.2 9.8,14.2 7.4,14.2 L5,14.2 L5,10.4 L9.8,6.8 L0,6.8 Z',
+        '4': 'M10,0 L14.6,0 L14.6,15.4 L17,15.4 L17,19.6 L14.6,19.6 L14.6,24 L10,24 L10,19.6 L0,19.6 L0,15 Z M10,5.6 L3.4,15.4 L10,15.4 Z',
+        '5': 'M1.8,0 L15.2,0 L15.2,4.4 L6,4.4 L5.6,9.6 C7.2,9.2 8.8,9 10.4,9 C14.2,9 16.4,11.4 16.4,15.6 C16.4,20.6 13.4,24 8.4,24 C3.8,24 1.2,21 0.4,17 L4.8,15.4 C5.2,17.8 6.6,19.6 8.4,19.6 C10.8,19.6 12,18 12,15.6 C12,13 10.8,12 8.4,12 C6.8,12 5.6,12.8 4.8,13.6 L1,12 Z',
+        '6': 'M8,0 C12.6,0 15,2.6 15.6,6.2 L11.2,7.6 C10.8,5.8 9.6,4.4 7.8,4.4 C5,4.4 3.8,7.6 3.8,11.6 C5,10 7,9 9.6,9 C13.6,9 16,11.8 16,16 C16,21 12.8,24 8.4,24 C3.4,24 0,19.4 0,12 C0,5 3.4,0 8,0 Z M8.4,13.4 C6.4,13.4 5,14.8 4.2,16.4 C4.6,18.4 6.2,19.6 8.2,19.6 C10.2,19.6 11.6,18.2 11.6,16 C11.6,14.2 10.2,13.4 8.4,13.4 Z',
+        '7': 'M0,0 L16,0 L16,4.4 L8.6,24 L3.6,24 L11,4.4 L0,4.4 Z',
+        '8': 'M8,0 C11.6,0 14,2 14,5.2 C14,7.8 12.2,9.6 10,10.6 C12.8,11.6 15,13.6 15,17 C15,21.2 12,24 8,24 C4,24 1,21.2 1,17 C1,13.6 3.2,11.6 6,10.6 C3.8,9.6 2,7.8 2,5.2 C2,2 4.4,0 8,0 Z M8,4.2 C6,4.2 5,5.2 5,6.8 C5,8.2 6.2,9.2 8,9.2 C9.8,9.2 11,8.2 11,6.8 C11,5.2 10,4.2 8,4.2 Z M8,13.6 C5.8,13.6 4.6,14.8 4.6,17 C4.6,18.8 5.8,19.8 8,19.8 C10.2,19.8 11.4,18.8 11.4,17 C11.4,14.8 10.2,13.6 8,13.6 Z',
+        '9': 'M8,24 C3.4,24 1,21.4 0.4,17.8 L4.8,16.4 C5.2,18.2 6.4,19.6 8.2,19.6 C11,19.6 12.2,16.4 12.2,12.4 C11,14 9,15 6.4,15 C2.4,15 0,12.2 0,8 C0,3 3.2,0 7.6,0 C12.6,0 16,4.6 16,12 C16,19 12.6,24 8,24 Z M7.6,10.6 C9.6,10.6 11,9.2 11.8,7.6 C11.4,5.6 9.8,4.4 7.8,4.4 C5.8,4.4 4.4,5.8 4.4,8 C4.4,9.8 5.8,10.6 7.6,10.6 Z',
+        '-': 'M2,10 L14,10 L14,14 L2,14 Z',
+        '/': 'M1,24 L11,0 L15,0 L5,24 Z',
+        '.': 'M4,19 L9,19 L9,24 L4,24 Z',
+        ' ': ''
+      };
+
+      function getGlyphWidth(char) {
+        if (char === ' ') return 10;
+        if (char === 'I' || char === '1') return 10;
+        if (char === 'M' || char === 'W') return 22;
+        if (char === '.') return 10;
+        return 16;
+      }
+
+      function renderVectorText(text, x, y, size, color, align = 'center') {
+        const clean = (text || '').toUpperCase().trim();
+        const scale = size / 24;
+        let totalWidth = 0;
+        const letterSpacing = 3;
+
+        for (let i = 0; i < clean.length; i++) {
+          totalWidth += getGlyphWidth(clean[i]) * scale + (i < clean.length - 1 ? letterSpacing * scale : 0);
+        }
+
+        let startX = x;
+        if (align === 'center') startX = x - totalWidth / 2;
+        else if (align === 'right') startX = x - totalWidth;
+
+        let curX = startX;
+        let pathElements = [];
+
+        for (let i = 0; i < clean.length; i++) {
+          const ch = clean[i];
+          const gw = getGlyphWidth(ch) * scale;
+          const d = GLYPH_PATHS[ch];
+          if (d) {
+            pathElements.push(
+              `<path d="${d}" fill="${color}" fill-rule="evenodd" transform="translate(${curX.toFixed(2)},${y.toFixed(2)}) scale(${scale.toFixed(4)})" />`
+            );
+          }
+          curX += gw + letterSpacing * scale;
+        }
+
+        return pathElements.join('');
+      }
+
+
+      /* ======================================================================
+         2. BUILT-IN OFFLINE DATASETS (ARROW, HOME, CAR)
+         ====================================================================== */
+
+      // 30 Fixed Reference Arrow Icons (Exact Concepts from Prompt Section 16)
+      const ARROW_DATASET = {
+        category: "ARROW",
+        representativeIcon: {
+          name: "Arrow Right",
+          path: "M 20,50 L 78,50 M 52,24 L 78,50 L 52,76"
+        },
+        seoTitle: "30 Arrow Vector Icons Set - Modern Navigation, Direction, Wayfinding Symbols",
+        keywords: [
+          "arrow", "arrows", "direction", "navigation", "pointer", "wayfinding", "sign", "symbol", 
+          "interface", "ui", "icon", "collection", "set", "pack", "minimal", "outline", "line", 
+          "chevron", "turn", "u-turn", "repeat", "sync", "refresh", "undo", "redo", "upload", 
+          "download", "expand", "collapse", "next", "previous", "forward", "back", "up", "down", 
+          "left", "right", "curve", "straight", "indicator", "web", "application", "mobile", 
+          "vector", "graphic", "isolated", "stock"
+        ],
+        icons: [
+          { name: "Arrow Right", path: "M 20,50 L 78,50 M 52,24 L 78,50 L 52,76" },
+          { name: "Arrow Left", path: "M 80,50 L 22,50 M 48,24 L 22,50 L 48,76" },
+          { name: "Arrow Up", path: "M 50,80 L 50,22 M 24,48 L 50,22 L 76,48" },
+          { name: "Arrow Down", path: "M 50,20 L 50,78 M 24,52 L 50,78 L 76,52" },
+          { name: "Arrow Up-Right", path: "M 26,74 L 74,26 M 38,26 L 74,26 L 74,62" },
+          { name: "Arrow Up-Left", path: "M 74,74 L 26,26 M 62,26 L 26,26 L 26,62" },
+          { name: "Arrow Down-Right", path: "M 26,26 L 74,74 M 38,74 L 74,74 L 74,38" },
+          { name: "Arrow Down-Left", path: "M 74,26 L 26,74 M 62,74 L 26,74 L 26,38" },
+          { name: "Chevron Right", path: "M 38,24 L 64,50 L 38,76" },
+          { name: "Chevron Left", path: "M 62,24 L 36,50 L 62,76" },
+          { name: "Chevron Up", path: "M 24,62 L 50,36 L 76,62" },
+          { name: "Chevron Down", path: "M 24,38 L 50,64 L 76,38" },
+          { name: "Double Chevron Right", path: "M 26,24 L 52,50 L 26,76 M 48,24 L 74,50 L 48,76" },
+          { name: "Double Chevron Left", path: "M 52,24 L 26,50 L 52,76 M 74,24 L 48,50 L 74,76" },
+          { name: "Double Chevron Up", path: "M 24,52 L 50,26 L 76,52 M 24,74 L 50,48 L 76,74" },
+          { name: "Double Chevron Down", path: "M 24,26 L 50,52 L 76,26 M 24,48 L 50,74 L 76,48" },
+          { name: "Long Arrow Right", path: "M 14,50 L 86,50 M 64,28 L 86,50 L 64,72" },
+          { name: "Long Arrow Left", path: "M 86,50 L 14,50 M 36,28 L 14,50 L 36,72" },
+          { name: "Curved Turn Right", path: "M 26,76 L 26,48 C 26,32 38,24 54,24 L 74,24 M 58,10 L 76,24 L 58,38" },
+          { name: "Curved Turn Left", path: "M 74,76 L 74,48 C 74,32 62,24 46,24 L 26,24 M 42,10 L 24,24 L 42,38" },
+          { name: "U-Turn Right", path: "M 30,76 L 30,42 C 30,22 46,22 46,42 L 46,74 M 32,60 L 46,74 L 60,60" },
+          { name: "U-Turn Left", path: "M 70,76 L 70,42 C 70,22 54,22 54,42 L 54,74 M 40,60 L 54,74 L 68,60" },
+          { name: "Refresh", path: "M 80,50 A 30,30 0 1,1 50,20 L 50,32 M 38,20 L 50,32 L 62,20" },
+          { name: "Sync / Repeat", path: "M 76,38 A 28,28 0 0,0 24,46 L 16,38 M 24,62 A 28,28 0 0,0 76,54 L 84,62 M 32,46 L 16,38 L 16,54 M 68,54 L 84,62 L 84,46" },
+          { name: "Undo", path: "M 24,42 L 54,42 C 68,42 78,52 78,66 C 78,74 72,80 64,80 M 38,28 L 24,42 L 38,56" },
+          { name: "Redo", path: "M 76,42 L 46,42 C 32,42 22,52 22,66 C 22,74 28,80 36,80 M 62,28 L 76,42 L 62,56" },
+          { name: "Upload", path: "M 22,66 L 22,78 L 78,78 L 78,66 M 50,60 L 50,20 M 32,36 L 50,18 L 68,36" },
+          { name: "Download", path: "M 22,66 L 22,78 L 78,78 L 78,66 M 50,20 L 50,60 M 32,42 L 50,62 L 68,42" },
+          { name: "Expand", path: "M 20,40 L 20,20 L 40,20 M 80,40 L 80,20 L 60,20 M 20,60 L 20,80 L 40,80 M 80,60 L 80,80 L 60,80 M 24,24 L 38,38 M 76,24 L 62,38 M 24,76 L 38,62 M 76,76 L 62,62" },
+          { name: "Collapse", path: "M 38,22 L 38,38 L 22,38 M 62,22 L 62,38 L 78,38 M 38,78 L 38,62 L 22,62 M 62,78 L 62,62 L 78,62 M 38,38 L 24,24 M 62,38 L 76,24 M 38,62 L 24,76 M 62,62 L 76,76" }
+        ]
+      };
+
+      // 30 Complete Home / Real Estate Vector Icons
+      const HOME_DATASET = {
+        category: "HOME",
+        representativeIcon: {
+          name: "Home Modern",
+          path: "M 18,48 L 50,20 L 82,48 L 82,82 L 18,82 Z M 40,82 L 40,54 L 60,54 L 60,82"
+        },
+        seoTitle: "30 Home & Real Estate Vector Icons Set - House, Property, Architecture Symbols",
+        keywords: [
+          "home", "house", "real-estate", "property", "building", "residence", "architecture", "cottage",
+          "villa", "apartment", "door", "window", "roof", "chimney", "garage", "garden", "fence",
+          "key", "search", "mortgage", "for-sale", "construction", "interior", "living", "suburb",
+          "neighborhood", "estate", "housing", "rent", "realtor", "security", "smart-home", "eco",
+          "energy", "green", "shield", "location", "pin", "agent", "minimal", "line", "outline",
+          "vector", "isolated", "graphic", "commercial", "stock"
+        ],
+        icons: [
+          { name: "Classic House", path: "M 18,48 L 50,20 L 82,48 L 82,82 L 18,82 Z M 40,82 L 40,54 L 60,54 L 60,82" },
+          { name: "Home Search", path: "M 18,46 L 46,22 L 74,46 L 74,78 L 18,78 Z M 52,52 A 16,16 0 1,0 68,68 M 64,64 L 82,82" },
+          { name: "Home Key", path: "M 20,48 L 50,22 L 80,48 L 80,80 L 20,80 Z M 44,52 A 8,8 0 1,1 56,52 L 56,68 L 50,68 M 56,62 L 62,62" },
+          { name: "Smart Home", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 50,14 L 50,6 M 38,10 C 44,6 56,6 62,10" },
+          { name: "Home Wifi", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 38,58 C 45,52 55,52 62,58 M 44,66 C 48,62 52,62 56,66 M 50,72 L 50,74" },
+          { name: "Cottage", path: "M 14,54 L 50,24 L 86,54 M 24,50 L 24,82 L 76,82 L 76,50 M 66,32 L 66,20 L 74,20 L 74,38" },
+          { name: "Garage Home", path: "M 16,48 L 50,20 L 84,48 L 84,82 L 16,82 Z M 30,82 L 30,52 L 70,52 L 70,82 M 30,62 L 70,62 M 30,72 L 70,72" },
+          { name: "Apartment Building", path: "M 24,18 L 76,18 L 76,84 L 24,84 Z M 36,30 L 44,30 M 56,30 L 64,30 M 36,44 L 44,44 M 56,44 L 64,44 M 36,58 L 44,58 M 56,58 L 64,58 M 44,84 L 44,72 L 56,72 L 56,84" },
+          { name: "Modern Villa", path: "M 14,32 L 62,32 L 62,82 L 14,82 Z M 52,44 L 86,44 L 86,82 L 52,82 Z M 24,46 L 40,46 M 24,60 L 40,60 M 66,56 L 78,56" },
+          { name: "Tower Condo", path: "M 32,14 L 68,14 L 68,86 L 32,86 Z M 42,26 L 58,26 M 42,38 L 58,38 M 42,50 L 58,50 M 42,62 L 58,62 M 42,74 L 58,74" },
+          { name: "Front Door", path: "M 24,16 L 76,16 L 76,86 L 24,86 Z M 32,24 L 68,24 L 68,86 L 32,86 Z M 60,54 L 60,58" },
+          { name: "4-Pane Window", path: "M 20,20 L 80,20 L 80,80 L 20,80 Z M 50,20 L 50,80 M 20,50 L 80,50" },
+          { name: "Roof & Chimney", path: "M 12,56 L 50,24 L 88,56 M 68,34 L 68,18 L 76,18 L 76,40 M 72,12 C 72,8 74,6 76,8" },
+          { name: "Home Security", path: "M 24,46 L 50,24 L 76,46 L 76,80 L 24,80 Z M 50,42 L 64,48 C 64,62 50,70 50,70 C 50,70 36,62 36,48 Z" },
+          { name: "Home Love", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 50,50 C 44,44 38,50 42,58 L 50,68 L 58,58 C 62,50 56,44 50,50 Z" },
+          { name: "Home Location", path: "M 50,14 C 36,14 26,24 26,38 C 26,56 50,82 50,82 C 50,82 74,56 74,38 C 74,24 64,14 50,14 Z M 40,42 L 50,32 L 60,42 L 60,54 L 40,54 Z" },
+          { name: "Home Add", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 50,46 L 50,68 M 39,57 L 61,57" },
+          { name: "Home Remove", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 39,57 L 61,57" },
+          { name: "Home Check", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 38,58 L 46,66 L 64,48" },
+          { name: "Home Construction", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 38,62 L 62,38 M 58,34 L 66,42" },
+          { name: "Green Eco Home", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 42,70 C 42,50 62,46 62,46 C 62,46 62,68 42,70 Z" },
+          { name: "Solar Energy Home", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 38,36 L 46,44 M 44,30 L 52,38 M 50,24 L 58,32 M 50,56 L 46,64 L 54,64 L 50,74" },
+          { name: "Home Finance", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 50,44 L 50,70 M 44,50 C 48,46 54,46 56,52 C 58,58 44,60 44,66 C 46,72 56,72 56,66" },
+          { name: "For Sale Tag", path: "M 22,50 L 50,24 L 78,50 L 78,80 L 22,80 Z M 42,50 L 58,50 L 58,68 L 42,68 Z M 42,50 L 50,42 L 58,50" },
+          { name: "Home Repair", path: "M 20,48 L 50,22 L 80,48 L 80,82 L 20,82 Z M 40,70 L 58,52 C 60,54 62,52 64,48 C 66,44 64,40 60,40 C 56,40 54,42 54,44 L 38,62 Z" },
+          { name: "Garden Fence", path: "M 16,36 L 24,24 L 32,36 L 32,80 L 16,80 Z M 38,36 L 46,24 L 54,36 L 54,80 L 38,80 Z M 60,36 L 68,24 L 76,36 L 76,80 L 60,80 Z M 12,46 L 80,46 M 12,68 L 80,68" },
+          { name: "Porch Shelter", path: "M 14,42 L 50,18 L 86,42 M 24,42 L 24,82 M 76,42 L 76,82 M 16,82 L 84,82" },
+          { name: "Mailbox", path: "M 32,24 L 62,24 C 70,24 74,30 74,38 L 74,54 L 32,54 Z M 44,54 L 44,84 M 52,54 L 52,84 M 32,24 L 32,54" },
+          { name: "Bedroom", path: "M 16,56 L 84,56 L 84,78 M 16,78 L 16,40 M 84,78 L 84,68 M 24,56 C 24,46 34,46 44,56 M 44,56 C 44,46 54,46 64,56" },
+          { name: "Lighting Lamp", path: "M 50,12 L 50,36 M 30,56 L 70,56 L 58,36 L 42,36 Z M 44,66 L 56,66 M 46,72 L 54,72" }
+        ]
+      };
+
+      // 30 Complete Car / Automotive Vector Icons
+      const CAR_DATASET = {
+        category: "CAR",
+        representativeIcon: {
+          name: "Car Profile",
+          path: "M 14,60 L 22,46 L 42,40 L 64,40 L 76,46 L 86,54 L 86,68 L 14,68 Z M 32,68 A 10,10 0 1,1 32,67 M 68,68 A 10,10 0 1,1 68,67 M 44,42 L 44,58 M 26,48 L 44,44 M 62,44 L 72,48"
+        },
+        seoTitle: "30 Car & Automotive Vector Icons Set - Vehicle, Transport, Speedometer Symbols",
+        keywords: [
+          "car", "auto", "automobile", "vehicle", "transport", "transportation", "drive", "driver",
+          "engine", "piston", "wheel", "tire", "speedometer", "fuel", "gas-station", "electric-car",
+          "ev", "battery", "key", "remote", "mechanic", "service", "repair", "car-wash", "shield",
+          "insurance", "rental", "gps", "navigation", "taxi", "police", "truck", "van", "traffic-light",
+          "oil", "spark-plug", "exhaust", "seatbelt", "airbag", "headlight", "door", "minimal",
+          "line", "outline", "vector", "graphic", "isolated"
+        ],
+        icons: [
+          { name: "Sedan Car", path: "M 14,60 L 22,46 L 42,40 L 64,40 L 76,46 L 86,54 L 86,68 L 14,68 Z M 32,68 A 10,10 0 1,1 32,67 M 68,68 A 10,10 0 1,1 68,67 M 44,42 L 44,58" },
+          { name: "SUV Vehicle", path: "M 14,62 L 20,44 L 68,44 L 78,54 L 86,58 L 86,70 L 14,70 Z M 30,70 A 9,9 0 1,1 30,69 M 70,70 A 9,9 0 1,1 70,69" },
+          { name: "Sports Coupe", path: "M 12,64 L 26,52 L 46,42 L 68,42 L 88,58 L 88,68 L 12,68 Z M 30,68 A 9,9 0 1,1 30,69 M 72,68 A 9,9 0 1,1 72,69" },
+          { name: "Electric Vehicle", path: "M 16,60 L 26,44 L 64,44 L 78,54 L 84,68 L 16,68 Z M 30,68 A 8,8 0 1,1 30,67 M 68,68 A 8,8 0 1,1 68,67 M 48,22 L 42,32 L 50,32 L 46,42" },
+          { name: "Steering Wheel", path: "M 50,14 A 36,36 0 1,1 49,14 Z M 50,42 A 8,8 0 1,1 49,42 Z M 16,48 L 42,48 M 58,48 L 84,48 M 50,58 L 50,86" },
+          { name: "Speedometer", path: "M 18,66 A 36,36 0 1,1 82,66 Z M 50,66 L 68,44 M 46,66 A 4,4 0 1,1 54,66" },
+          { name: "Car Key Fob", path: "M 32,36 C 32,26 40,18 50,18 C 60,18 68,26 68,36 L 68,70 C 68,78 60,84 50,84 C 40,84 32,78 32,70 Z M 44,36 L 56,36 M 44,48 L 56,48 M 50,60 L 50,68" },
+          { name: "Engine Motor", path: "M 20,38 L 30,38 L 30,28 L 44,28 L 44,38 L 66,38 L 66,28 L 76,28 L 76,50 L 84,50 L 84,72 L 76,72 L 76,82 L 20,82 Z M 32,56 L 46,56 M 54,56 L 64,56" },
+          { name: "Wheel Rim", path: "M 50,14 A 36,36 0 1,1 49,14 Z M 50,34 A 16,16 0 1,1 49,34 Z M 50,14 L 50,34 M 50,66 L 50,86 M 14,50 L 34,50 M 66,50 L 86,50" },
+          { name: "Fuel Pump", path: "M 22,24 L 54,24 L 54,82 L 22,82 Z M 22,46 L 54,46 M 54,34 C 64,34 72,42 72,50 L 72,70 L 78,64 M 32,34 L 44,34" },
+          { name: "EV Charger", path: "M 24,24 L 54,24 L 54,82 L 24,82 Z M 39,36 L 33,48 L 43,48 L 37,60 M 54,36 C 68,36 74,44 74,54 L 74,72 L 80,66" },
+          { name: "Car Battery", path: "M 16,36 L 84,36 L 84,80 L 16,80 Z M 28,26 L 38,26 L 38,36 L 28,36 Z M 62,26 L 72,26 L 72,36 L 62,36 Z M 28,54 L 38,54 M 33,49 L 33,59 M 62,54 L 72,54" },
+          { name: "Car Service", path: "M 14,64 L 24,50 L 56,50 L 64,58 L 86,64 L 86,72 L 14,72 Z M 62,22 L 76,36 C 78,34 82,34 84,36 L 86,34 L 80,28 L 84,24 Z" },
+          { name: "Car Wash", path: "M 14,62 L 22,48 L 58,48 L 74,56 L 84,68 L 14,68 Z M 34,22 C 34,26 30,30 30,30 C 30,30 26,26 26,22 C 26,18 34,18 34,22 Z M 52,20 C 52,24 48,28 48,28 C 48,28 44,24 44,20 C 44,16 52,16 52,20 Z M 70,22 C 70,26 66,30 66,30 C 66,30 62,26 62,22 C 62,18 70,18 70,22 Z" },
+          { name: "Car Shield", path: "M 50,14 L 78,24 C 78,54 50,78 50,78 C 50,78 22,54 22,24 Z M 32,48 L 40,42 L 58,42 L 66,48 L 68,56 L 30,56 Z" },
+          { name: "GPS Navigation", path: "M 50,14 C 36,14 26,24 26,38 C 26,56 50,82 50,82 C 50,82 74,56 74,38 C 74,24 64,14 50,14 Z M 50,30 L 60,48 L 50,44 L 40,48 Z" },
+          { name: "Car Rental Search", path: "M 14,64 L 22,52 L 52,52 L 60,60 L 74,66 L 14,66 Z M 54,34 A 14,14 0 1,0 68,48 M 64,44 L 80,60" },
+          { name: "Car Mobility", path: "M 14,66 L 24,52 L 60,52 L 72,60 L 84,68 L 14,68 Z M 48,22 A 8,8 0 1,1 47,22 Z M 36,40 C 36,34 42,34 48,34 C 54,34 60,34 60,40" },
+          { name: "Taxi Cab", path: "M 14,62 L 22,48 L 62,48 L 74,56 L 86,66 L 14,66 Z M 40,40 L 56,40 L 56,48 L 40,48 Z M 42,34 L 54,34" },
+          { name: "Emergency Siren", path: "M 24,68 L 76,68 L 70,44 C 70,32 60,26 50,26 C 40,26 30,32 30,44 Z M 50,14 L 50,20 M 28,20 L 34,24 M 72,20 L 66,24" },
+          { name: "Delivery Truck", path: "M 12,32 L 56,32 L 56,70 L 12,70 Z M 56,44 L 76,44 L 86,56 L 86,70 L 56,70 Z M 26,70 A 8,8 0 1,1 26,69 M 72,70 A 8,8 0 1,1 72,69" },
+          { name: "Traffic Light", path: "M 34,16 L 66,16 L 66,84 L 34,84 Z M 50,28 A 6,6 0 1,1 49,28 Z M 50,50 A 6,6 0 1,1 49,50 Z M 50,72 A 6,6 0 1,1 49,72 Z" },
+          { name: "Motor Oil", path: "M 24,44 L 66,44 L 74,80 L 20,80 Z M 32,44 L 32,28 L 44,28 L 44,44 M 64,36 L 78,28 M 46,62 C 46,68 50,72 50,72 C 50,72 54,68 54,62 C 54,58 46,58 46,62 Z" },
+          { name: "Spark Plug", path: "M 44,14 L 56,14 M 50,14 L 50,30 M 42,30 L 58,30 L 58,42 L 42,42 Z M 38,42 L 62,42 L 62,60 L 38,60 Z M 44,60 L 44,82 M 48,82 L 48,86" },
+          { name: "Exhaust Muffler", path: "M 14,48 L 30,48 L 30,36 L 70,36 L 70,60 L 30,60 L 30,52 L 14,52 Z M 70,48 L 86,48 M 76,42 C 82,38 86,44 88,40" },
+          { name: "Safety Seatbelt", path: "M 24,20 L 76,80 M 28,18 L 80,78 M 44,38 L 58,54 M 38,44 L 52,60" },
+          { name: "Airbag Safety", path: "M 50,16 C 28,16 16,32 16,50 C 16,68 30,82 50,82 C 70,82 84,68 84,50 C 84,32 72,16 50,16 Z M 36,46 L 46,46 M 54,46 L 64,46 M 42,62 C 46,66 54,66 58,62" },
+          { name: "Headlight Beam", path: "M 46,28 C 30,28 20,38 20,50 C 20,62 30,72 46,72 Z M 56,36 L 80,30 M 58,50 L 84,50 M 56,64 L 80,70" },
+          { name: "Open Car Door", path: "M 24,18 L 62,18 L 76,78 L 24,78 Z M 32,28 L 56,28 L 60,48 L 32,48 Z M 52,58 L 62,58" },
+          { name: "Odometer Counter", path: "M 18,32 L 82,32 L 82,68 L 18,68 Z M 34,32 L 34,68 M 50,32 L 50,68 M 66,32 L 66,68 M 26,52 L 26,48 M 42,52 L 42,48 M 58,52 L 58,48 M 74,52 L 74,48" }
+        ]
+      };
+
+      const BUILTIN_CATEGORIES = {
+        'ARROW': ARROW_DATASET,
+        'HOME': HOME_DATASET,
+        'CAR': CAR_DATASET
+      };
+
+      /* ======================================================================
+         3. COLOR PALETTES PRESETS
+         ====================================================================== */
+      const PALETTE_PRESETS = {
+        2: [
+          ["#155DFB", "#00B8D9"], // Blue & Cyan (Reference 2 style)
+          ["#2563EB", "#7C3AED"], // Royal Blue & Purple
+          ["#0D9488", "#F59E0B"], // Teal & Amber
+          ["#1E293B", "#64748B"]  // Slate Duo
+        ],
+        3: [
+          ["#155DFB", "#6366F1", "#F43F5E"], // Blue, Indigo, Rose
+          ["#0284C7", "#10B981", "#F59E0B"], // Sky, Emerald, Amber
+          ["#8B5CF6", "#EC4899", "#3B82F6"]  // Purple, Pink, Blue
+        ],
+        4: [
+          ["#155DFB", "#00B8D9", "#10B981", "#F59E0B"], // Microstock Quad
+          ["#6366F1", "#EC4899", "#F97316", "#14B8A6"], // Vibrant Modern
+          ["#3B82F6", "#8B5CF6", "#06B6D4", "#10B981"]  // Ocean Gradient Set
+        ]
+      };
+
+
+      /* ======================================================================
+         4. GLOBAL APPLICATION STATE
+         ====================================================================== */
+      const state = {
+        category: "ARROW",
+        currentData: JSON.parse(JSON.stringify(ARROW_DATASET)),
+        style: "outline", // 'outline' | 'invert' | 'color' | 'frame'
+        iconCount: 30,
+        strokeWeight: 1.2,
+        frameRoundness: 18, // percent
+        colorMode: 2, // 2, 3, 4
+        activePalette: ["#155DFB", "#00B8D9"],
+        includeBranding: true,
+        apiKey: localStorage.getItem('gemini_api_key') || '',
+        rememberKey: !!localStorage.getItem('gemini_api_key'),
+        zoom: 0.15,
+        panX: 0,
+        panY: 0,
+        isDragging: false,
+        dragStartX: 0,
+        dragStartY: 0,
+        selectedModel: 'models/gemini-3.6-flash',
+        availableModels: [],
+        apiStatus: 'disconnected' // 'connected' | 'error' | 'disconnected'
+      };
+
+
+      /* ======================================================================
+         5. DOM ELEMENTS CACHE
+         ====================================================================== */
+      const el = {
+        categoryInput: document.getElementById('categoryInput'),
+        btnGenerate: document.getElementById('btnGenerate'),
+        btnOpenSeo: document.getElementById('btnOpenSeo'),
+        btnApiKeyModal: document.getElementById('btnApiKeyModal'),
+        apiStatusDot: document.getElementById('apiStatusDot'),
+        apiStatusText: document.getElementById('apiStatusText'),
+        
+        styleOutline: document.getElementById('styleOutline'),
+        styleInvert: document.getElementById('styleInvert'),
+        styleColor: document.getElementById('styleColor'),
+        styleFrame: document.getElementById('styleFrame'),
+
+        sliderCount: document.getElementById('sliderCount'),
+        valCount: document.getElementById('valCount'),
+        sliderStroke: document.getElementById('sliderStroke'),
+        valStroke: document.getElementById('valStroke'),
+        sliderRoundness: document.getElementById('sliderRoundness'),
+        valRoundness: document.getElementById('valRoundness'),
+        groupFrameRoundness: document.getElementById('groupFrameRoundness'),
+
+        sectionColorPalette: document.getElementById('sectionColorPalette'),
+        activeSwatchesRow: document.getElementById('activeSwatchesRow'),
+        presetPalettesGroup: document.getElementById('presetPalettesGroup'),
+        toggleBranding: document.getElementById('toggleBranding'),
+
+        btnExportSvg: document.getElementById('btnExportSvg'),
+        btnExportPng: document.getElementById('btnExportPng'),
+        btnDownloadCsv: document.getElementById('btnDownloadCsv'),
+
+        viewportContainer: document.getElementById('viewportContainer'),
+        canvasWrapper: document.getElementById('canvasWrapper'),
+        artboardSvg: document.getElementById('artboardSvg'),
+        loadingBanner: document.getElementById('loadingBanner'),
+        loadingBannerText: document.getElementById('loadingBannerText'),
+
+        btnZoomIn: document.getElementById('btnZoomIn'),
+        btnZoomOut: document.getElementById('btnZoomOut'),
+        btnZoomFit: document.getElementById('btnZoomFit'),
+        btnZoomReset: document.getElementById('btnZoomReset'),
+        zoomDisplay: document.getElementById('zoomDisplay'),
+
+        seoModal: document.getElementById('seoModal'),
+        btnCloseSeoModal: document.getElementById('btnCloseSeoModal'),
+        inputSeoTitle: document.getElementById('inputSeoTitle'),
+        keywordBadge: document.getElementById('keywordBadge'),
+        keywordChipsContainer: document.getElementById('keywordChipsContainer'),
+        textareaKeywords: document.getElementById('textareaKeywords'),
+        btnCopyTitle: document.getElementById('btnCopyTitle'),
+        btnCopyKeywords: document.getElementById('btnCopyKeywords'),
+        btnApplySeoChanges: document.getElementById('btnApplySeoChanges'),
+        btnDownloadCsvModal: document.getElementById('btnDownloadCsvModal'),
+
+        apiKeyModal: document.getElementById('apiKeyModal'),
+        btnCloseApiKeyModal: document.getElementById('btnCloseApiKeyModal'),
+        inputApiKey: document.getElementById('inputApiKey'),
+        checkRememberKey: document.getElementById('checkRememberKey'),
+        btnSaveApiKey: document.getElementById('btnSaveApiKey'),
+        btnTestModels: document.getElementById('btnTestModels'),
+        debugApiStatus: document.getElementById('debugApiStatus'),
+        debugSelectedModel: document.getElementById('debugSelectedModel'),
+        selectModelDropdown: document.getElementById('selectModelDropdown'),
+        debugModelsListRow: document.getElementById('debugModelsListRow'),
+        debugModelsList: document.getElementById('debugModelsList'),
+        debugModelsCount: document.getElementById('debugModelsCount'),
+
+        toastContainer: document.getElementById('toastContainer')
+      };
+
+
+      /* ======================================================================
+         6. UI TOAST & NOTIFICATION SYSTEM
+         ====================================================================== */
+      function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        el.toastContainer.appendChild(toast);
+        const duration = type === 'error' ? 8000 : 4000;
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(-10px)';
+          toast.style.transition = 'all 0.25s ease';
+          setTimeout(() => toast.remove(), 250);
+        }, duration);
+      }
+
+      function updateApiStatusIndicator() {
+        if (state.apiKey && state.apiKey.trim().length > 10) {
+          el.apiStatusDot.className = 'status-dot active';
+          const shortModel = state.selectedModel ? state.selectedModel.replace(/^models\//, '') : 'Gemini Ready';
+          el.apiStatusText.textContent = shortModel;
+          el.btnApiKeyModal.title = `Gemini API Key Configured. Active Model: ${state.selectedModel || 'Auto-Discover'}`;
+        } else {
+          el.apiStatusDot.className = 'status-dot demo';
+          el.apiStatusText.textContent = 'Demo Mode (Offline)';
+          el.btnApiKeyModal.title = 'Configure Google Gemini BYOK API Key';
+        }
+      }
+
+      function updateDebugUI(errorMsg) {
+        if (!el.debugApiStatus) return;
+        if (state.apiStatus === 'connected' && state.selectedModel) {
+          el.debugApiStatus.textContent = 'Connected';
+          el.debugApiStatus.style.color = 'var(--success)';
+          el.debugSelectedModel.textContent = state.selectedModel;
+          el.debugSelectedModel.style.color = 'var(--accent)';
+
+          if (el.selectModelDropdown && state.availableModels.length > 0) {
+            el.selectModelDropdown.style.display = 'block';
+            el.selectModelDropdown.innerHTML = state.availableModels.map(m => {
+              const isSelected = m === state.selectedModel ? 'selected' : '';
+              const isRec = m.includes('3.6-flash') ? ' ⭐ (Recommended)' : '';
+              return `<option value="${m}" ${isSelected}>${m}${isRec}</option>`;
+            }).join('');
+          }
+
+          if (el.debugModelsListRow && el.debugModelsList && state.availableModels.length > 0) {
+            el.debugModelsListRow.style.display = 'flex';
+            el.debugModelsCount.textContent = state.availableModels.length;
+            el.debugModelsList.innerHTML = state.availableModels.map(m => {
+              const isSelected = m === state.selectedModel;
+              const star = m.includes('3.6-flash') ? ' ⭐ Recommended' : '';
+              return `<div style="${isSelected ? 'color: var(--accent); font-weight: 700;' : 'color: #BBB;'}">${isSelected ? '● ' : '○ '}${m}${star}</div>`;
+            }).join('');
+          }
+        } else if (state.apiStatus === 'error') {
+          el.debugApiStatus.textContent = 'API Error';
+          el.debugApiStatus.style.color = 'var(--danger)';
+          el.debugSelectedModel.textContent = errorMsg || 'Discovery Failed';
+          el.debugSelectedModel.style.color = 'var(--danger)';
+          if (el.debugModelsListRow) el.debugModelsListRow.style.display = 'none';
+          if (el.selectModelDropdown) el.selectModelDropdown.style.display = 'none';
+        } else {
+          el.debugApiStatus.textContent = 'Not Connected';
+          el.debugApiStatus.style.color = '#EAB308';
+          el.debugSelectedModel.textContent = state.selectedModel || 'models/gemini-3.6-flash';
+          el.debugSelectedModel.style.color = 'var(--accent)';
+          if (el.debugModelsListRow) el.debugModelsListRow.style.display = 'none';
+          if (el.selectModelDropdown) el.selectModelDropdown.style.display = 'none';
+        }
+      }
+
+
+      /* ======================================================================
+         7. STRICT 47 KEYWORD VALIDATOR & REPAIR
+         ====================================================================== */
+      function sanitizeKeywords(rawList, category) {
+        let list = (rawList || [])
+          .map(k => String(k).trim().toLowerCase().replace(/["']/g, ''))
+          .filter(k => k.length > 1 && !k.includes('ai generated') && !k.includes('artificial intelligence'));
+        
+        // Remove duplicates while preserving order
+        list = Array.from(new Set(list));
+
+        // Commercial stock filler terms if fewer than 47
+        const fallbackStockTerms = [
+          category.toLowerCase(), "vector", "icon", "set", "collection", "pack", "symbol", "sign",
+          "isolated", "graphic", "illustration", "design", "element", "outline", "line", "monoline",
+          "minimal", "interface", "ui", "web", "app", "mobile", "button", "template", "modern",
+          "commercial", "stock", "digital", "simple", "clean", "shape", "silhouette", "eps10",
+          "concept", "artwork", "presentation", "navigation", "creative", "black", "linear",
+          "flat", "pictogram", "emblem", "badge", "asset", "infographic", "pixel"
+        ];
+
+        let termIndex = 0;
+        while (list.length < 47 && termIndex < fallbackStockTerms.length) {
+          const t = fallbackStockTerms[termIndex++];
+          if (!list.includes(t)) {
+            list.push(t);
+          }
+        }
+
+        // If still somehow under 47, pad with category indexed terms
+        let padNum = 1;
+        while (list.length < 47) {
+          list.push(`${category.toLowerCase()}-${padNum++}`);
+        }
+
+        // Strictly cap at 47
+        if (list.length > 47) {
+          list = list.slice(0, 47);
+        }
+
+        return list;
+      }
+
+
+      /* ======================================================================
+         8. PURE SVG ARTBOARD RENDERING ENGINE (7000 × 5000)
+         Whitelisted elements: <svg>, <g>, <path>, <rect>, <circle>, <polygon>, <line>
+         ZERO <text>, ZERO <image>, ZERO <filter>, ZERO gradients!
+         ====================================================================== */
+      function renderArtboardSvgString() {
+        const data = state.currentData;
+        const count = Math.max(1, Math.min(30, state.iconCount));
+        const strokeMult = state.strokeWeight / 1.2;
+        const baseIconStroke = (20 * strokeMult).toFixed(2);
+        const doubleStrokeOuter = (32 * strokeMult).toFixed(2);
+        const doubleStrokeInner = (14 * strokeMult).toFixed(2);
+
+        let svgMarkup = [];
+
+        // 1. Artboard Background
+        svgMarkup.push(`<rect x="0" y="0" width="7000" height="5000" fill="#FFFFFF" />`);
+
+        // 2. Left Brand Panel (if enabled)
+        if (state.includeBranding) {
+          // Black background panel (x: 0, y: 0, width: 1200, height: 5000)
+          svgMarkup.push(`<rect x="0" y="0" width="1200" height="5000" fill="#0F0F11" />`);
+
+          // Top Representative Icon Container (center 600, y: 200, size: 840x840, rx: 90)
+          svgMarkup.push(
+            `<rect x="180" y="200" width="840" height="840" rx="90" ry="90" fill="#0F0F11" stroke="#25252A" stroke-width="6" />`
+          );
+
+          // Representative Icon with double-stroke treatment:
+          // Outer: Thick White (#FFFFFF)
+          // Inner: Thinner Green (#CCFF00) on exact same geometry!
+          const rep = data.representativeIcon || data.icons[0] || ARROW_DATASET.representativeIcon;
+          const repScale = 5.6; // scales 100x100 to ~560x560
+          const repX = 600 - 50 * repScale;
+          const repY = 620 - 50 * repScale;
+
+          svgMarkup.push(`<g transform="translate(${repX}, ${repY}) scale(${repScale})">`);
+          // Outer White Stroke
+          svgMarkup.push(
+            `<path d="${rep.path}" fill="none" stroke="#FFFFFF" stroke-width="${doubleStrokeOuter}" stroke-linecap="round" stroke-linejoin="round" />`
+          );
+          // Inner Neon Green Stroke
+          svgMarkup.push(
+            `<path d="${rep.path}" fill="none" stroke="#CCFF00" stroke-width="${doubleStrokeInner}" stroke-linecap="round" stroke-linejoin="round" />`
+          );
+          svgMarkup.push(`</g>`);
+
+          // Category Title (Vectorized text, centered at x: 600, y: 1360)
+          const catTitle = (data.category || state.category || "ARROW").toUpperCase();
+          let titleSize = 160;
+          if (catTitle.length > 6) {
+            titleSize = Math.max(65, Math.floor(160 * (6 / catTitle.length)));
+          }
+          const titlePath = renderVectorText(catTitle, 600, 1360, titleSize, "#CCFF00", "center");
+          svgMarkup.push(titlePath);
+
+          // Badge 1: "EPS 10" (center 600, y: 1720, w: 780, h: 240, rx: 50)
+          svgMarkup.push(
+            `<rect x="210" y="1600" width="780" height="240" rx="50" ry="50" fill="#0F0F11" stroke="#FFFFFF" stroke-width="18" />`
+          );
+          const epsPath = renderVectorText("EPS 10", 600, 1670, 100, "#CCFF00", "center");
+          svgMarkup.push(epsPath);
+
+          // Badge 2: "[COUNT] ICONS" (center 600, y: 2280, w: 780, h: 640, rx: 50)
+          svgMarkup.push(
+            `<rect x="210" y="1960" width="780" height="640" rx="50" ry="50" fill="#0F0F11" stroke="#FFFFFF" stroke-width="18" />`
+          );
+          // Large count number in Neon Green
+          const countNumStr = String(count);
+          const countNumPath = renderVectorText(countNumStr, 600, 2030, 260, "#CCFF00", "center");
+          svgMarkup.push(countNumPath);
+
+          // "ICONS" or "ICON" in White below
+          const countLabelStr = count === 1 ? "ICON" : "ICONS";
+          const countLabelPath = renderVectorText(countLabelStr, 600, 2380, 120, "#FFFFFF", "center");
+          svgMarkup.push(countLabelPath);
+        }
+
+        // 3. Right White Canvas Grid Layout
+        // Canvas area: x: 1200 to 7000 (width: 5800), y: 0 to 5000 (height: 5000)
+        // If branding is off, grid can expand nicely across full 7000x5000
+        const canvasLeft = state.includeBranding ? 1200 : 0;
+        const canvasWidth = state.includeBranding ? 5800 : 7000;
+        const canvasHeight = 5000;
+
+        // Grid columns and rows reflow deterministically based on count:
+        let cols = 6;
+        let rows = 5;
+
+        if (count === 30) {
+          cols = 6; rows = 5; // LOCKED 6x5 for 30
+        } else if (count <= 1) {
+          cols = 1; rows = 1;
+        } else if (count <= 2) {
+          cols = 2; rows = 1;
+        } else if (count <= 3) {
+          cols = 3; rows = 1;
+        } else if (count <= 4) {
+          cols = 2; rows = 2;
+        } else if (count <= 6) {
+          cols = 3; rows = 2;
+        } else if (count <= 8) {
+          cols = 4; rows = 2;
+        } else if (count <= 10) {
+          cols = 5; rows = 2;
+        } else if (count <= 12) {
+          cols = 4; rows = 3;
+        } else if (count <= 15) {
+          cols = 5; rows = 3;
+        } else if (count <= 16) {
+          cols = 4; rows = 4;
+        } else if (count <= 20) {
+          cols = 5; rows = 4;
+        } else if (count <= 24) {
+          cols = 6; rows = 4;
+        } else if (count <= 25) {
+          cols = 5; rows = 5;
+        } else {
+          cols = 6; rows = 5;
+        }
+
+        const marginX = canvasWidth * 0.05;
+        const marginY = canvasHeight * 0.05;
+        const gridW = canvasWidth - marginX * 2;
+        const gridH = canvasHeight - marginY * 2;
+        const cellW = gridW / cols;
+        const cellH = gridH / rows;
+
+        // Box size inside cell
+        const boxSize = Math.min(cellW * 0.82, cellH * 0.82);
+        // Corner radius for frames and badges
+        const rx = (boxSize * (state.frameRoundness / 100)).toFixed(1);
+
+        // Render Icons up to count
+        const iconsList = data.icons.slice(0, count);
+
+        iconsList.forEach((icon, idx) => {
+          const col = idx % cols;
+          const row = Math.floor(idx / cols);
+
+          const cx = canvasLeft + marginX + (col + 0.5) * cellW;
+          const cy = marginY + (row + 0.5) * cellH;
+
+          const boxX = (cx - boxSize / 2).toFixed(1);
+          const boxY = (cy - boxSize / 2).toFixed(1);
+
+          // 1. Style-Specific Background/Frame Treatment
+          if (state.style === 'invert') {
+            // Solid Black Rounded Square Badge
+            svgMarkup.push(
+              `<rect x="${boxX}" y="${boxY}" width="${boxSize.toFixed(1)}" height="${boxSize.toFixed(1)}" rx="${rx}" ry="${rx}" fill="#0F0F11" />`
+            );
+          } else if (state.style === 'color') {
+            // Flat Color Badge from Active Palette
+            const palette = state.activePalette;
+            const color = palette[idx % palette.length];
+            svgMarkup.push(
+              `<rect x="${boxX}" y="${boxY}" width="${boxSize.toFixed(1)}" height="${boxSize.toFixed(1)}" rx="${rx}" ry="${rx}" fill="${color}" />`
+            );
+          } else if (state.style === 'frame') {
+            // Outline-Only Frame
+            const frameStroke = Math.max(0.8, baseIconStroke * 0.9).toFixed(1);
+            svgMarkup.push(
+              `<rect x="${boxX}" y="${boxY}" width="${boxSize.toFixed(1)}" height="${boxSize.toFixed(1)}" rx="${rx}" ry="${rx}" fill="none" stroke="#0F0F11" stroke-width="${frameStroke}" />`
+            );
+          }
+
+          // 2. Icon Vector Stroke
+          const iconColor = (state.style === 'invert' || state.style === 'color') ? '#FFFFFF' : '#0F0F11';
+          const iconScale = (boxSize * 0.54) / 100;
+          const iconX = (cx - 50 * iconScale).toFixed(1);
+          const iconY = (cy - 50 * iconScale).toFixed(1);
+
+          svgMarkup.push(
+            `<g transform="translate(${iconX}, ${iconY}) scale(${iconScale.toFixed(4)})">` +
+            `<path d="${icon.path}" fill="none" stroke="${iconColor}" stroke-width="${baseIconStroke}" stroke-linecap="round" stroke-linejoin="round" />` +
+            `</g>`
+          );
+        });
+
+        return svgMarkup.join('\n');
+      }
+
+      function updatePreview() {
+        try {
+          const innerSvg = renderArtboardSvgString();
+          el.artboardSvg.innerHTML = innerSvg;
+        } catch (err) {
+          console.error("Preview render failed:", err);
+          showToast("Rendering error: " + err.message, "error");
+        }
+      }
+
+
+      /* ======================================================================
+         9. BYOK GEMINI AI DISCOVERY & ARBITRARY CATEGORY GENERATION
+         Uses Google Gemini ListModels API to discover and select available models
+         ====================================================================== */
+      async function getAvailableGeminiModels(apiKey) {
+        const key = (apiKey || state.apiKey || '').trim();
+        if (!key) {
+          throw new Error("No Gemini API key provided.");
+        }
+
+        const listUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`;
+        let response;
+        try {
+          response = await fetch(listUrl);
+        } catch (networkErr) {
+          throw new Error(`Network Error contacting Gemini API: ${networkErr.message}`);
+        }
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          const errMsg = errData.error?.message || `HTTP ${response.status} ${response.statusText}`;
+          throw new Error(`Gemini API Error: ${errMsg}`);
+        }
+
+        const data = await response.json();
+        const models = Array.isArray(data.models) ? data.models : [];
+
+        // Filter models whose supportedGenerationMethods includes "generateContent"
+        const validModels = models.filter(m => {
+          const methods = m.supportedGenerationMethods || [];
+          return Array.isArray(methods) && methods.includes('generateContent');
+        });
+
+        if (validModels.length === 0) {
+          console.error("ListModels response diagnostics (0 generateContent models):", {
+            totalModelsReturned: models.length,
+            modelNames: models.map(m => m.name),
+            methods: models.map(m => ({ name: m.name, methods: m.supportedGenerationMethods }))
+          });
+          throw new Error("No available Gemini model supporting generateContent was found for this API key.");
+        }
+
+        return validModels;
+      }
+
+      function selectBestModel(validModels) {
+        if (!validModels || validModels.length === 0) return 'models/gemini-3.6-flash';
+
+        // Filter out deprecated models that are discontinued for new users (specifically 2.5-flash)
+        const isEligible = (m) => {
+          const name = (m.name || '').toLowerCase();
+          if (name.includes('2.5-flash') || name.includes('2.5')) return false;
+          if (name.includes('embed') || name.includes('imagen') || name.includes('tts') || name.includes('aqa')) return false;
+          return true;
+        };
+
+        const eligible = validModels.filter(isEligible);
+        const pool = eligible.length > 0 ? eligible : validModels.filter(m => !m.name.toLowerCase().includes('2.5'));
+        if (pool.length === 0) return validModels[0].name;
+
+        // 1. Google's explicitly recommended model: gemini-3.6-flash
+        const match36 = pool.find(m => (m.name || '').toLowerCase().includes('3.6-flash'));
+        if (match36) return match36.name;
+
+        // 2. Prioritize modern flash models: 2.0-flash, 1.5-flash
+        const match20 = pool.find(m => (m.name || '').toLowerCase().includes('2.0-flash'));
+        if (match20) return match20.name;
+
+        const match15 = pool.find(m => (m.name || '').toLowerCase().includes('1.5-flash'));
+        if (match15) return match15.name;
+
+        // 3. Fallback to any other non-2.5 flash model
+        const anyFlash = pool.find(m => (m.name || '').toLowerCase().includes('flash'));
+        if (anyFlash) return anyFlash.name;
+
+        // 4. Fallback to any other text model
+        const anyText = pool.find(m => (m.name || '').toLowerCase().includes('gemini'));
+        if (anyText) return anyText.name;
+
+        return pool[0].name;
+      }
+
+      async function discoverAndSelectModel(apiKey, showNotification = false) {
+        const key = (apiKey || state.apiKey || '').trim();
+        if (!key) return null;
+
+        try {
+          const validModels = await getAvailableGeminiModels(key);
+          const chosenModelName = selectBestModel(validModels);
+
+          state.availableModels = validModels.map(m => m.name);
+          state.selectedModel = chosenModelName;
+          state.apiStatus = 'connected';
+
+          updateDebugUI();
+          updateApiStatusIndicator();
+
+          if (showNotification) {
+            const shortName = chosenModelName.replace(/^models\//, '');
+            showToast(`Connected! Discovered ${validModels.length} models. Using: ${shortName}`, 'info');
+          }
+
+          return chosenModelName;
+        } catch (err) {
+          state.apiStatus = 'error';
+          state.selectedModel = null;
+          updateDebugUI(err.message);
+          updateApiStatusIndicator();
+          console.error("Gemini ListModels Discovery Failed:", err);
+          if (showNotification) {
+            showToast(err.message, 'error');
+          }
+          throw err;
+        }
+      }
+
+      async function generateCategoryWithGemini(category) {
+        const catClean = category.trim().toUpperCase();
+        if (!catClean) return;
+
+        // 1. ARROW is strictly fixed to the 30 reference concepts (Section 21)
+        if (catClean === "ARROW") {
+          state.category = "ARROW";
+          state.currentData = JSON.parse(JSON.stringify(ARROW_DATASET));
+          state.currentData.keywords = sanitizeKeywords(state.currentData.keywords, "ARROW");
+          updatePreview();
+          updateSeoInputs();
+          showToast("Loaded fixed 30 ARROW reference icon sheet.", "info");
+          return;
+        }
+
+        const apiKey = state.apiKey.trim();
+
+        // 2. Offline Fallback Mode: if NO API key is entered, load built-in sets (HOME, CAR)
+        if (!apiKey) {
+          if (BUILTIN_CATEGORIES[catClean]) {
+            state.category = catClean;
+            state.currentData = JSON.parse(JSON.stringify(BUILTIN_CATEGORIES[catClean]));
+            state.currentData.keywords = sanitizeKeywords(state.currentData.keywords, catClean);
+            updatePreview();
+            updateSeoInputs();
+            showToast(`Loaded built-in offline ${catClean} icon sheet.`, 'info');
+            return;
+          }
+          showToast(`Gemini API key required to generate a new category.`, 'error');
+          openApiKeyModal();
+          return;
+        }
+
+        // 3. User HAS provided an API key -> Universal AI Semantic Generation!
+        el.loadingBanner.style.display = 'flex';
+        el.btnGenerate.disabled = true;
+
+        try {
+          // Dynamic Model Discovery: ensure we have a valid model from ListModels
+          let modelName = state.selectedModel;
+          if (!modelName) {
+            el.loadingBannerText.textContent = `Querying Gemini ListModels API...`;
+            modelName = await discoverAndSelectModel(apiKey, false);
+          }
+
+          const shortModel = modelName.replace(/^models\//, '');
+          el.loadingBannerText.textContent = `Synthesizing 30 ${catClean} Vector Icons with ${shortModel}...`;
+
+          const systemPrompt = `You are an expert vector icon designer and microstock asset producer.
+Generate a structured microstock icon collection for the category: "${catClean}".
+Output MUST be valid strict JSON conforming to this schema:
+{
+  "category": "${catClean}",
+  "seoTitle": "30 ${catClean} Vector Icons Set - Commercial Symbols for Web & Mobile",
+  "keywords": [exactly 47 commercially useful keywords, comma-free],
+  "representativeIcon": {
+    "name": "Representative Icon Name",
+    "path": "SVG path d attribute data in 0 0 100 100 viewBox using M, L, C, S, Q, A, Z commands"
+  },
+  "icons": [
+    {
+      "name": "Icon Name",
+      "path": "SVG path d attribute data in 0 0 100 100 viewBox using M, L, C, S, Q, A, Z commands"
+    }
+  ]
+}
+Requirements:
+1. Provide exactly 30 distinct, commercially useful icons in the "icons" array directly relevant to "${catClean}".
+2. Icons must be professional, clean monoline vectors designed for a normalized 0 0 100 100 coordinate box.
+3. Use stroke-based path data (clean line drawings, no complex intersecting fills).
+4. Provide exactly 47 keywords in the "keywords" array suitable for Shutterstock/Adobe Stock (do not include "AI generated" or "Artificial Intelligence").
+5. Return ONLY the JSON object. Do not include markdown code fences.`;
+
+          const modelResource = modelName.startsWith('models/') ? modelName : `models/${modelName}`;
+          const requestUrl = `https://generativelanguage.googleapis.com/v1beta/${modelResource}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+          const response = await fetch(requestUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: systemPrompt }] }],
+              generationConfig: {
+                responseMimeType: "application/json",
+                temperature: 0.2
+              }
+            })
+          });
+
+          if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMsg = errData.error?.message || `HTTP ${response.status} ${response.statusText}`;
+
+            // Automatic smart recovery: if Google recommends an updated model (e.g. gemini-3.6-flash)
+            const recMatch = errMsg.match(/update your code to use\s+([a-zA-Z0-9_\-\.\/]+)/i);
+            if (recMatch && recMatch[1] && !state._isAutoRetrying) {
+              const recommendedModel = recMatch[1].trim();
+              console.warn(`Google recommended updated model: ${recommendedModel}. Auto-switching and retrying...`);
+              state._isAutoRetrying = true;
+              state.selectedModel = recommendedModel;
+              updateDebugUI();
+              updateApiStatusIndicator();
+              showToast(`Switching to Google recommended model: ${recommendedModel}...`, 'info');
+              try {
+                return await generateCategoryWithGemini(category);
+              } finally {
+                state._isAutoRetrying = false;
+              }
+            }
+
+            throw new Error(`Gemini API Error: ${errMsg}`);
+          }
+
+          const resData = await response.json();
+          const rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!rawText) {
+            throw new Error("Empty response received from Gemini API.");
+          }
+
+          // Parse JSON safely
+          let parsed;
+          try {
+            parsed = JSON.parse(rawText);
+          } catch (pe) {
+            const sanitized = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+            parsed = JSON.parse(sanitized);
+          }
+
+          if (!parsed || typeof parsed !== 'object') {
+            throw new Error("Invalid response format: JSON root is not an object.");
+          }
+
+          // Support both "path" and "geometry" representations
+          let validatedIcons = (parsed.icons || []).map(ic => {
+            if (!ic) return null;
+            let pathData = ic.path || ic.geometry || ic.d;
+            if (Array.isArray(pathData)) pathData = pathData.join(' ');
+            if (typeof pathData === 'string' && pathData.trim().length > 3) {
+              return {
+                name: ic.name || `${catClean} Concept`,
+                path: pathData.trim()
+              };
+            }
+            return null;
+          }).filter(Boolean);
+
+          // Pad up to 30 icons if model returned fewer
+          while (validatedIcons.length < 30) {
+            const idx = validatedIcons.length + 1;
+            validatedIcons.push({
+              name: `${catClean} Concept ${idx}`,
+              path: "M 20,20 L 80,20 L 80,80 L 20,80 Z M 30,50 L 70,50 M 50,30 L 50,70"
+            });
+          }
+          if (validatedIcons.length > 30) {
+            validatedIcons = validatedIcons.slice(0, 30);
+          }
+
+          // Representative Icon Extraction
+          let repIcon = parsed.representativeIcon;
+          if (repIcon) {
+            let repPath = repIcon.path || repIcon.geometry || repIcon.d;
+            if (Array.isArray(repPath)) repPath = repPath.join(' ');
+            if (typeof repPath === 'string' && repPath.trim().length > 3) {
+              repIcon = { name: repIcon.name || `${catClean} Representative`, path: repPath.trim() };
+            } else {
+              repIcon = validatedIcons[0];
+            }
+          } else {
+            repIcon = validatedIcons[0];
+          }
+
+          // Ensure exactly 47 keywords
+          const keywords = sanitizeKeywords(parsed.keywords, catClean);
+
+          // Update application state (completely replaces previous category)
+          state.category = catClean;
+          state.currentData = {
+            category: catClean,
+            representativeIcon: repIcon,
+            icons: validatedIcons,
+            seoTitle: parsed.seoTitle || `30 ${catClean} Vector Icons Set - Stock Collection`,
+            keywords: keywords
+          };
+
+          updatePreview();
+          updateSeoInputs();
+          showToast(`Generated 30 "${catClean}" icons using ${shortModel}!`, 'info');
+
+        } catch (err) {
+          console.error("Gemini Generation Failed:", err);
+          showToast(err.message, 'error');
+
+          // Graceful fallback for built-in sets if API fails
+          if (BUILTIN_CATEGORIES[catClean]) {
+            state.category = catClean;
+            state.currentData = JSON.parse(JSON.stringify(BUILTIN_CATEGORIES[catClean]));
+            state.currentData.keywords = sanitizeKeywords(state.currentData.keywords, catClean);
+            updatePreview();
+            updateSeoInputs();
+            showToast(`API error occurred. Loaded built-in offline ${catClean} icons.`, 'info');
+          }
+        } finally {
+          el.loadingBanner.style.display = 'none';
+          el.btnGenerate.disabled = false;
+        }
+      }
+
+
+      /* ======================================================================
+         10. VIEWPORT PAN & ZOOM ENGINE
+         ====================================================================== */
+      function applyViewportTransform() {
+        el.canvasWrapper.style.transform = `translate(${state.panX}px, ${state.panY}px) scale(${state.zoom})`;
+        el.zoomDisplay.textContent = Math.round(state.zoom * 100) + '%';
+      }
+
+      function fitViewport() {
+        const containerRect = el.viewportContainer.getBoundingClientRect();
+        const artboardW = 7000;
+        const artboardH = 5000;
+        const margin = 40;
+
+        const availW = containerRect.width - margin * 2;
+        const availH = containerRect.height - margin * 2;
+
+        const scaleW = availW / artboardW;
+        const scaleH = availH / artboardH;
+        state.zoom = Math.min(scaleW, scaleH);
+
+        state.panX = (containerRect.width - artboardW * state.zoom) / 2;
+        state.panY = (containerRect.height - artboardH * state.zoom) / 2;
+
+        applyViewportTransform();
+      }
+
+      function zoomAtCenter(factor) {
+        const containerRect = el.viewportContainer.getBoundingClientRect();
+        const cx = containerRect.width / 2;
+        const cy = containerRect.height / 2;
+
+        const prevZoom = state.zoom;
+        const newZoom = Math.max(0.04, Math.min(1.2, prevZoom * factor));
+
+        state.panX = cx - (cx - state.panX) * (newZoom / prevZoom);
+        state.panY = cy - (cy - state.panY) * (newZoom / prevZoom);
+        state.zoom = newZoom;
+
+        applyViewportTransform();
+      }
+
+
+      /* ======================================================================
+         11. SEO & METADATA MODAL HANDLERS
+         ====================================================================== */
+      function updateSeoInputs() {
+        const data = state.currentData;
+        el.inputSeoTitle.value = data.seoTitle || `30 ${state.category} Vector Icons Set`;
+        el.textareaKeywords.value = data.keywords.join(', ');
+
+        el.keywordChipsContainer.innerHTML = '';
+        data.keywords.forEach((kw, idx) => {
+          const chip = document.createElement('span');
+          chip.className = 'keyword-chip';
+          chip.textContent = `${idx + 1}. ${kw}`;
+          el.keywordChipsContainer.appendChild(chip);
+        });
+
+        el.keywordBadge.textContent = `${data.keywords.length} / 47 Keywords`;
+        el.keywordBadge.className = data.keywords.length === 47 ? 'keyword-counter-badge exact' : 'keyword-counter-badge';
+      }
+
+      function openSeoModal() {
+        updateSeoInputs();
+        el.seoModal.classList.add('open');
+      }
+
+      function closeSeoModal() {
+        el.seoModal.classList.remove('open');
+      }
+
+      function openApiKeyModal() {
+        el.inputApiKey.value = state.apiKey;
+        el.checkRememberKey.checked = state.rememberKey;
+        updateDebugUI();
+        el.apiKeyModal.classList.add('open');
+      }
+
+      function closeApiKeyModal() {
+        el.apiKeyModal.classList.remove('open');
+      }
+
+
+      /* ======================================================================
+         12. EXPORT FUNCTIONS (SVG, PNG, CSV)
+         ====================================================================== */
+      function getSanitizedBaseFilename() {
+        const cat = (state.currentData.category || state.category || 'icons').toLowerCase().replace(/[^a-z0-9]/g, '-');
+        return `${cat}-icon-sheet`;
+      }
+
+      // 1. Export Pure Vector SVG (7000x5000, 0 <text>, 0 <image>)
+      function exportSvg() {
+        try {
+          const innerSvg = renderArtboardSvgString();
+          const svgContent = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7000 5000" width="7000" height="5000">\n` +
+            innerSvg + `\n</svg>`;
+
+          const blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${getSanitizedBaseFilename()}.svg`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          showToast(`Exported ${link.download} successfully!`, 'info');
+        } catch (e) {
+          console.error("SVG Export Error:", e);
+          showToast("Failed to export SVG: " + e.message, 'error');
+        }
+      }
+
+      // 2. Export High-Res PNG (7000x5000)
+      function exportPng() {
+        showToast("Rendering 7000×5000 PNG... Please wait a moment.", "info");
+        try {
+          const innerSvg = renderArtboardSvgString();
+          const svgContent = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7000 5000" width="7000" height="5000">\n` +
+            innerSvg + `\n</svg>`;
+
+          const blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const img = new Image();
+
+          img.onload = function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = 7000;
+            canvas.height = 5000;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, 7000, 5000);
+            URL.revokeObjectURL(url);
+
+            canvas.toBlob(function (pngBlob) {
+              if (!pngBlob) {
+                showToast("Failed to generate PNG blob.", "error");
+                return;
+              }
+              const pngUrl = URL.createObjectURL(pngBlob);
+              const link = document.createElement("a");
+              link.href = pngUrl;
+              link.download = `${getSanitizedBaseFilename()}.png`;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(pngUrl);
+              showToast(`Exported ${link.download} (7000×5000) successfully!`, 'info');
+            }, "image/png");
+          };
+
+          img.onerror = function () {
+            URL.revokeObjectURL(url);
+            showToast("Error creating canvas image for PNG export.", "error");
+          };
+
+          img.src = url;
+        } catch (e) {
+          console.error("PNG Export Error:", e);
+          showToast("Failed to export PNG: " + e.message, 'error');
+        }
+      }
+
+      // 3. Download CSV Metadata (UTF-8 BOM, Escaped Quotes, 47 Keywords)
+      function downloadCsv() {
+        try {
+          const data = state.currentData;
+          const filename = `${getSanitizedBaseFilename()}.svg`;
+          const title = (data.seoTitle || '').replace(/"/g, '""');
+          const keywordsStr = data.keywords.join(', ').replace(/"/g, '""');
+          const category = (data.category || state.category).replace(/"/g, '""');
+
+          // Standard Shutterstock / Adobe Stock Metadata CSV Format
+          const header = "Filename,Title,Keywords,Category\n";
+          const row = `"${filename}","${title}","${keywordsStr}","${category}"\n`;
+          const csvContent = "\uFEFF" + header + row; // Prepend UTF-8 BOM
+
+          const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${getSanitizedBaseFilename()}-metadata.csv`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          showToast(`Exported ${link.download} with 47 keywords!`, 'info');
+        } catch (e) {
+          console.error("CSV Export Error:", e);
+          showToast("Failed to export CSV: " + e.message, 'error');
+        }
+      }
+
+
+      /* ======================================================================
+         13. COLOR PALETTE UI RENDERING
+         ====================================================================== */
+      function renderColorPaletteUI() {
+        const mode = state.colorMode;
+        el.activeSwatchesRow.innerHTML = '';
+
+        for (let i = 0; i < mode; i++) {
+          const color = state.activePalette[i] || '#155DFB';
+          const swatch = document.createElement('div');
+          swatch.className = 'swatch-item';
+          swatch.style.backgroundColor = color;
+          swatch.title = `Click to customize Color ${i + 1}`;
+
+          const input = document.createElement('input');
+          input.type = 'color';
+          input.value = color;
+          input.addEventListener('input', (e) => {
+            state.activePalette[i] = e.target.value;
+            swatch.style.backgroundColor = e.target.value;
+            updatePreview();
+          });
+
+          swatch.appendChild(input);
+          el.activeSwatchesRow.appendChild(swatch);
+        }
+
+        // Render Preset Bars
+        el.presetPalettesGroup.innerHTML = '';
+        const presets = PALETTE_PRESETS[mode] || [];
+        presets.forEach((palette) => {
+          const bar = document.createElement('div');
+          bar.className = 'preset-bar';
+          palette.forEach(c => {
+            const slice = document.createElement('div');
+            slice.className = 'preset-color-slice';
+            slice.style.backgroundColor = c;
+            bar.appendChild(slice);
+          });
+          bar.addEventListener('click', () => {
+            state.activePalette = [...palette];
+            renderColorPaletteUI();
+            updatePreview();
+          });
+          el.presetPalettesGroup.appendChild(bar);
+        });
+      }
+
+
+      /* ======================================================================
+         14. EVENT LISTENERS SETUP
+         ====================================================================== */
+      function setupEvents() {
+        // Category Generation
+        el.btnGenerate.addEventListener('click', () => {
+          generateCategoryWithGemini(el.categoryInput.value);
+        });
+        el.categoryInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') generateCategoryWithGemini(el.categoryInput.value);
+        });
+
+        // Style Switching
+        const styleButtons = [el.styleOutline, el.styleInvert, el.styleColor, el.styleFrame];
+        styleButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            styleButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.style = btn.dataset.style;
+            updatePreview();
+          });
+        });
+
+        // Sliders
+        el.sliderCount.addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10);
+          state.iconCount = val;
+          el.valCount.textContent = val;
+          updatePreview();
+        });
+
+        el.sliderStroke.addEventListener('input', (e) => {
+          const val = parseFloat(e.target.value);
+          state.strokeWeight = val;
+          el.valStroke.textContent = val.toFixed(1);
+          updatePreview();
+        });
+
+        el.sliderRoundness.addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10);
+          state.frameRoundness = val;
+          el.valRoundness.textContent = `${val}%`;
+          updatePreview();
+        });
+
+        // Color Mode Pills (2-Color, 3-Color, 4-Color)
+        document.querySelectorAll('.mode-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            document.querySelectorAll('.mode-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const colorsCount = parseInt(pill.dataset.colors, 10);
+            state.colorMode = colorsCount;
+
+            const defaultPalette = PALETTE_PRESETS[colorsCount][0];
+            state.activePalette = [...defaultPalette];
+            renderColorPaletteUI();
+            updatePreview();
+          });
+        });
+
+        // Branding Toggle
+        el.toggleBranding.addEventListener('change', (e) => {
+          state.includeBranding = e.target.checked;
+          updatePreview();
+        });
+
+        // Viewport Drag & Pan
+        el.viewportContainer.addEventListener('mousedown', (e) => {
+          if (e.target.closest('.viewport-floating-bar')) return;
+          state.isDragging = true;
+          state.dragStartX = e.clientX - state.panX;
+          state.dragStartY = e.clientY - state.panY;
+        });
+        window.addEventListener('mousemove', (e) => {
+          if (!state.isDragging) return;
+          state.panX = e.clientX - state.dragStartX;
+          state.panY = e.clientY - state.dragStartY;
+          applyViewportTransform();
+        });
+        window.addEventListener('mouseup', () => {
+          state.isDragging = false;
+        });
+
+        // Viewport Wheel Zoom
+        el.viewportContainer.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+          zoomAtCenter(zoomFactor);
+        }, { passive: false });
+
+        // Zoom Buttons
+        el.btnZoomIn.addEventListener('click', () => zoomAtCenter(1.2));
+        el.btnZoomOut.addEventListener('click', () => zoomAtCenter(0.8));
+        el.btnZoomFit.addEventListener('click', fitViewport);
+        el.btnZoomReset.addEventListener('click', () => {
+          state.zoom = 1.0;
+          state.panX = 50;
+          state.panY = 50;
+          applyViewportTransform();
+        });
+        window.addEventListener('resize', fitViewport);
+
+        // SEO Modal Events
+        el.btnOpenSeo.addEventListener('click', openSeoModal);
+        el.btnCloseSeoModal.addEventListener('click', closeSeoModal);
+        el.seoModal.addEventListener('click', (e) => {
+          if (e.target === el.seoModal) closeSeoModal();
+        });
+
+        el.btnCopyTitle.addEventListener('click', () => {
+          navigator.clipboard.writeText(el.inputSeoTitle.value);
+          showToast("Copied title to clipboard!", "info");
+        });
+
+        el.btnCopyKeywords.addEventListener('click', () => {
+          navigator.clipboard.writeText(el.textareaKeywords.value);
+          showToast("Copied 47 keywords to clipboard!", "info");
+        });
+
+        el.btnApplySeoChanges.addEventListener('click', () => {
+          state.currentData.seoTitle = el.inputSeoTitle.value.trim();
+          const parsedKws = el.textareaKeywords.value.split(',').map(s => s.trim()).filter(Boolean);
+          state.currentData.keywords = sanitizeKeywords(parsedKws, state.category);
+          updateSeoInputs();
+          closeSeoModal();
+          showToast("SEO metadata updated successfully!", "info");
+        });
+
+        el.btnDownloadCsvModal.addEventListener('click', downloadCsv);
+
+        // API Key Modal Events
+        el.btnApiKeyModal.addEventListener('click', openApiKeyModal);
+        el.btnCloseApiKeyModal.addEventListener('click', closeApiKeyModal);
+        el.apiKeyModal.addEventListener('click', (e) => {
+          if (e.target === el.apiKeyModal) closeApiKeyModal();
+        });
+
+        if (el.btnTestModels) {
+          el.btnTestModels.addEventListener('click', async () => {
+            const key = el.inputApiKey.value.trim();
+            if (!key) {
+              showToast("Please enter an API key first.", "error");
+              return;
+            }
+            el.btnTestModels.disabled = true;
+            el.btnTestModels.textContent = "Querying ListModels...";
+            try {
+              await discoverAndSelectModel(key, true);
+            } catch (err) {
+              // handled in discoverAndSelectModel
+            } finally {
+              el.btnTestModels.disabled = false;
+              el.btnTestModels.textContent = "Discover & Test Available Models";
+            }
+          });
+        }
+
+        if (el.selectModelDropdown) {
+          el.selectModelDropdown.addEventListener('change', (e) => {
+            state.selectedModel = e.target.value;
+            updateDebugUI();
+            updateApiStatusIndicator();
+            showToast(`Active model changed to: ${state.selectedModel.replace(/^models\//, '')}`, 'info');
+          });
+        }
+
+        el.btnSaveApiKey.addEventListener('click', () => {
+          const key = el.inputApiKey.value.trim();
+          state.apiKey = key;
+          state.rememberKey = el.checkRememberKey.checked;
+          if (state.rememberKey && key) {
+            localStorage.setItem('gemini_api_key', key);
+          } else {
+            localStorage.removeItem('gemini_api_key');
+          }
+
+          if (key) {
+            discoverAndSelectModel(key, false).catch(() => {});
+          } else {
+            state.selectedModel = null;
+            state.availableModels = [];
+            state.apiStatus = 'disconnected';
+            updateDebugUI();
+          }
+
+          updateApiStatusIndicator();
+          closeApiKeyModal();
+          showToast("API Key configuration saved.", "info");
+        });
+
+        // Export Buttons
+        el.btnExportSvg.addEventListener('click', exportSvg);
+        el.btnExportPng.addEventListener('click', exportPng);
+        el.btnDownloadCsv.addEventListener('click', downloadCsv);
+      }
+
+
+      /* ======================================================================
+         15. INITIALIZATION
+         ====================================================================== */
+      function init() {
+        if (state.apiKey) {
+          discoverAndSelectModel(state.apiKey, false).catch(() => {});
+        }
+        updateApiStatusIndicator();
+        renderColorPaletteUI();
+        updatePreview();
+        setupEvents();
+
+        // Fit preview smoothly on startup
+        requestAnimationFrame(() => {
+          fitViewport();
+        });
+      }
+
+      // Run on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+  </script>
+</body>
+</html>
